@@ -3,18 +3,20 @@ import psycopg2
 import logging
 from db_config import setup_db, insert_user
 
+# Inizializzazione dell'app
 app = Flask(__name__)
 
-
+# Funzione per stabilire una connessione con PostgreSQL
 def get_db_connection():
     conn = psycopg2.connect(
         host="localhost",
         database="sqli_demo",
         user="gius",
         password="123"
-    )
+    ) 
     return conn
 
+# Definizione della route per la pagina principale '/'
 @app.route('/', methods=['GET', 'POST'])
 def login():
     user = None
@@ -25,37 +27,41 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
+        # Connessione al db
         conn = get_db_connection()
-        # Setting auto commit to True 
-        conn.autocommit = True
+
+        # Autocommit per tutte le query
+        conn.autocommit = True 
+        
         cursor = conn.cursor()
 
-        # Costruzione della query SQL vulnerabile
+        # Costruzione della query vulnerabile a SQLi
         query = f"SELECT * FROM users WHERE username='{username}' AND password='{password}';"
         print(f"Executing SQL Query: {query}")
 
         try:
-            cursor.execute(query)  # Usa execute per la query SELECT
+            cursor.execute(query)  
 
-            # Se la query non restituisce risultati, non chiamare fetchall
-            if cursor.description:  # Se la query ha una descrizione (ovvero restituisce risultati)
+            # Se la query restituisce risultati allora fa fetchall
+            if cursor.description: 
                 users = cursor.fetchall()
 
                 if users:
+                    # Converte i risultati della query in un dizionario
                     results['all_users'] = [dict(zip([desc[0] for desc in cursor.description], row)) for row in users]
                 else:
                     error = 'Invalid user credentials. Please try again.'
             else:
+                # Gestisce il caso in cui la tabella non esista (dopo un DROP TABLE)
                 results['no_users'] = "No such table: users "
                 print("Query executed, but no results to fetch.")
-                # Gestisci eventuali modifiche non risultanti da fetchall
 
         except psycopg2.Error as e:
-            # Registra l'errore e mostra un messaggio generico
-            logging.error(f'Error executing query: {str(e)}')
+            # Mostra un messaggio di errore generico    
             error = 'Invalid user credentials. Please try again.'
         conn.close()
-
+        
+    # Renderizza il template HTML con i risultati e gli eventuali errori
     return render_template('index.html', user=user, error=error, results=results)
 
 

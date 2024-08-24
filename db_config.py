@@ -1,6 +1,8 @@
 import psycopg2
 from psycopg2 import sql
 
+
+# Funzione per stabilire la connessione con il db
 def get_db_connection():
     conn = psycopg2.connect(
         host="localhost",
@@ -10,6 +12,7 @@ def get_db_connection():
     )
     return conn
 
+# Funzione che inizializza il db creando la tabella users solo se non esiste
 def setup_db():
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -25,6 +28,7 @@ def setup_db():
     conn.commit()
     conn.close()
 
+# Funzione utile per popolare il db
 def insert_user(username, password):
     conn = get_db_connection()
     cursor = conn.cursor()
