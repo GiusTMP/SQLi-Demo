@@ -1,6 +1,5 @@
 from flask import Flask, request, render_template
 import psycopg2
-import logging
 from database.db_config import setup_db, insert_user
 
 # Inizializzazione dell'app
