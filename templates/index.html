@@ -3,35 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Login Page</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Login</h1>
-    <form method="POST">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password">
-        <br>
-        <button type="submit">Login</button>
-    </form>
-
-    {% if user %}
-        <p id="welcome-message">Welcome, {{ user }}!</p>
-    {% endif %}
-
-    {% if error %}
-        <p style="color:red;">{{ error }}</p>
-    {% endif %}
-
-    <!-- Aggiungi il seguente script per stampare nella console del browser -->
-    <script>
-        // Se esiste un risultato della query, stampalo nella console del browser
-        {% if results.all_users%}
-            console.log("Query Result: ", {{ results.all_users | tojson }});
+    <div class="login-container">
+        <h2>Login</h2>
+        {% if error %}
+        <p class="error-message">{{ error }}</p>
         {% endif %}
-    </script>
+        <form method="POST" action="/">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+        {% if results.all_users %}
+        <h1 class="answer">SUCCESS</h1>
+        <p class="answer">You have successfully logged in!!</p>
+        <script>
+            const allUsers = {{ results.all_users | tojson | safe }};
+            console.log("All Users Query Results: ", allUsers);
+        </script>
+        {% endif %}
+        {% if results.no_users %}
+            <script>
+                const no_users = {{ results.no_users | tojson | safe }};
+                console.log(no_users);
+            </script>    
+        {% endif %}
+    </div>
 </body>
 </html>
