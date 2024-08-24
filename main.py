@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template
 import psycopg2
 import logging
-from db_config import setup_db, insert_user
+from database.db_config import setup_db, insert_user
 
 # Inizializzazione dell'app
 app = Flask(__name__)
@@ -60,7 +60,7 @@ def login():
             # Mostra un messaggio di errore generico    
             error = 'Invalid user credentials. Please try again.'
         conn.close()
-        
+
     # Renderizza il template HTML con i risultati e gli eventuali errori
     return render_template('index.html', user=user, error=error, results=results)
 
