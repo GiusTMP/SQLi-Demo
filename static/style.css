@@ -1,5 +1,4 @@
-
-
+/* Stile comune per il corpo della pagina */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -9,6 +8,8 @@ body {
     height: 100vh;
     margin: 0;
 }
+
+/* Contenitore del modulo di login */
 .login-container {
     background-color: white;
     padding: 20px;
@@ -16,22 +17,32 @@ body {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 300px;
 }
+
+/* Stile per il titolo del login */
 h2 {
     text-align: center;
     margin-bottom: 20px;
 }
+
+/* Stile per i gruppi di campo nel modulo */
 .form-group {
     margin-bottom: 15px;
 }
+
+/* Etichette dei gruppi di campo */
 .form-group label {
     display: block;
     margin-bottom: 5px;
 }
+
+/* Input nei gruppi di campo */
 .form-group input {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
 }
+
+/* Pulsanti dei gruppi di campo */
 .form-group button {
     width: 100%;
     padding: 10px;
@@ -41,15 +52,68 @@ h2 {
     border-radius: 4px;
     cursor: pointer;
 }
+
+/* Effetto hover sui pulsanti */
 .form-group button:hover {
     background-color: #45a049;
 }
+
+/* Messaggi di errore */
 .error-message {
     color: red;
     text-align: center;
     margin-bottom: 10px;
 }
-.answer{
+
+/* Messaggi di successo */
+.answer {
     color: green;
     text-align: center;
+}
+
+/* Contenitore della pagina di benvenuto */
+.welcome-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+/* Titolo della pagina di benvenuto */
+.welcome-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Stile per l'elenco degli utenti */
+.welcome-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.welcome-container ul li {
+    background: #e0e0e0;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Stile per il link di logout */
+.logout-button {
+    display: block;
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #f44336;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.logout-button:hover {
+    background-color: #d32f2f;
 }

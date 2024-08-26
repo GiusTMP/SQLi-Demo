@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="welcome-container">
+        <h2>Welcome, {{ session['username'] }}!</h2>
+        <!-- Bottone per il logout -->
+        <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+        
+        <!-- Se ci sono utenti, mostra i risultati -->
+        {% if results %}
+        <!-- Script per visualizzare i risultati della query nel console log del browser -->
+        <script>
+            const allUsers = {{ results | tojson | safe }};
+            console.log("All Users Query Results: ", allUsers);
+        </script>
+        {% else %}
+        <p>No users found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

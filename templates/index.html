@@ -9,9 +9,14 @@
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <!-- Se c'è un errore (es. credenziali errate), viene mostrato qui -->
+        <!-- Se c'è un errore (es. credenziali errate o tabella non trovata), viene mostrato qui -->
         {% if error %}
         <p class="error-message">{{ error }}</p>
+        <script>
+            // Visualizza il messaggio di errore nella console
+            const errorMessage = {{ consoleError | tojson | safe }};
+            console.log("Login Error: ", errorMessage);
+        </script>
         {% endif %}
         <!-- Modulo HTML per l'invio delle credenziali di accesso -->
         <form method="POST" action="/">
@@ -27,25 +32,6 @@
                 <button type="submit">Login</button>
             </div>
         </form>
-        <!-- Se la query restituisce degli utenti, mostra il messaggio di successo -->
-        {% if results.all_users %}
-        <h1 class="answer">SUCCESS</h1>
-        <p class="answer">You have successfully logged in!!</p>
-        <!-- Script per visualizzare i risultati della query nel console log del browser -->
-        <script>
-            // `results.all_users` è un dizionario che viene convertito in JSON
-            const allUsers = {{ results.all_users | tojson | safe }};
-            console.log("All Users Query Results: ", allUsers);
-        </script>
-        {% endif %}
-        <!-- Se non ci sono utenti (o se la tabella non esiste), mostra un messaggio specifico -->
-        {% if results.no_users %}
-            <script>
-                // `results.no_users` viene convertito in JSON e passato al console log
-                const no_users = {{ results.no_users | tojson | safe }};
-                console.log(no_users);
-            </script>    
-        {% endif %}
     </div>
 </body>
 </html>
