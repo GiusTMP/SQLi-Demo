@@ -1,4 +1,4 @@
-/* Stile comune per il corpo della pagina */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -9,7 +9,7 @@ body {
     margin: 0;
 }
 
-/* Contenitore del modulo di login */
+
 .login-container {
     background-color: white;
     padding: 20px;
@@ -18,31 +18,31 @@ body {
     width: 300px;
 }
 
-/* Stile per il titolo del login */
+
 h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-/* Stile per i gruppi di campo nel modulo */
+
 .form-group {
     margin-bottom: 15px;
 }
 
-/* Etichette dei gruppi di campo */
+
 .form-group label {
     display: block;
     margin-bottom: 5px;
 }
 
-/* Input nei gruppi di campo */
+
 .form-group input {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
 }
 
-/* Pulsanti dei gruppi di campo */
+
 .form-group button {
     width: 100%;
     padding: 10px;
@@ -53,25 +53,25 @@ h2 {
     cursor: pointer;
 }
 
-/* Effetto hover sui pulsanti */
+
 .form-group button:hover {
     background-color: #45a049;
 }
 
-/* Messaggi di errore */
+
 .error-message {
     color: red;
     text-align: center;
     margin-bottom: 10px;
 }
 
-/* Messaggi di successo */
+
 .answer {
     color: green;
     text-align: center;
 }
 
-/* Contenitore della pagina di benvenuto */
+
 .welcome-container {
     background-color: white;
     padding: 20px;
@@ -80,13 +80,13 @@ h2 {
     width: 300px;
 }
 
-/* Titolo della pagina di benvenuto */
+
 .welcome-container h2 {
     text-align: center;
     margin-bottom: 20px;
 }
 
-/* Stile per l'elenco degli utenti */
+
 .welcome-container ul {
     list-style-type: none;
     padding: 0;
@@ -99,7 +99,7 @@ h2 {
     border-radius: 4px;
 }
 
-/* Stile per il link di logout */
+
 .logout-button {
     display: block;
     width: 100%;

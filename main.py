@@ -1,20 +1,11 @@
 from flask import Flask, request, render_template, redirect, url_for, session
 import psycopg2
-from database.db_config import setup_db, insert_user
+from database.db_config import *
 
 # Inizializzazione dell'app
 app = Flask(__name__)
 app.secret_key = 'very_secure_key'  # Chiave segreta necessario per la gestione della sessione
 
-# Funzione per stabilire una connessione con PostgreSQL
-def get_db_connection():
-    conn = psycopg2.connect(
-        host="localhost",
-        database="sqli_demo",
-        user="gius",
-        password="123"
-    ) 
-    return conn
 
 # Definizione della route per la pagina principale '/' (login)
 @app.route('/', methods=['GET', 'POST'])
@@ -95,8 +86,14 @@ def welcome():
         cursor.execute(query)
         users = cursor.fetchall()
         if cursor.description:
-            # Converte i risultati della query in una lista di dizionari
-            results = [dict(zip([desc[0] for desc in cursor.description], row)) for row in users]
+            id_idx = [desc[0] for desc in cursor.description].index('id')
+            username_idx = [desc[0] for desc in cursor.description].index('username')
+
+            # Crea la lista di dizionari filtrando solo 'id' e 'username'
+            results = [
+                {"id": row[id_idx], "username": row[username_idx]}
+                for row in users
+            ]
         else:
             results = []
     except psycopg2.Error as e:
